@@ -1,0 +1,41 @@
+﻿Musimy zrobić interfejsik do projektora i kamerki:)
+Nie wiem od czego zacząć i jak to uporządkować więc sory za być może
+mały bałagan w opisie::::
+
+- robimy interfejs do zestawu projektor + kamera
+- chodzi o to żeby to wyglądało nastęoująco: użytkownik sobie klika na
+obrazek który chce wyświetlić projektorem, ustawia parametry czas
+wyświetlania jednego obrazka, odstęp między obrazkami i może coś
+jeszcze, tym sposobem tworzy się sekwencja
+- tą sekwencję musimy jeszcze zapisać do pliku
+- kamera jest obok i pobiera obraz obiektu, który jest oświetlony
+projektorem, zapisujemy również tą sekwencję
+- musimy tylko jakoś to zsynchronizować, ewentualnie wyświetlić błąd,
+że nie zgadzają się fps w projektorze i kamerze
+- pobieranie obrazu z kamery jest proste,
+- wyświetlanie obrazu na projektorze tez, normalnie podłączony jest
+przez vga: d-sub lub dvi tak jak zewnętrzny monitor, trzeba tylko
+ogarnąć wyświetlanie na full screen ( z tego co wiem to openGL sobie
+dobrze radzi, jest jako widget w qt)
+- cały interfejs zrobimy w Qt
+- oczywiście wykorzystamy OpenCV i ewentualnie PCL
+- na koniec musimy zrobić kilka funkcji operacji na obrazie:
+dodawanie, odejmowanie, mnożenie itd (wszystko jest w opencv)
+- i wyniki tych operacji wyświetlić w 3D, jest sporo funkcji w PCL
+- do wyboru wszystkie możliwe biblioteki dodatkowe:)
+- wszystkie chwyty dozwolone
+
+
+Ogólnie trzeba ogarnąć QT, opencv ja biore na siebie, pcl tez troche robiłem.
+
+----------------------------------------------------------------------------------
+
+co do środowiska (IDE) to ja bym zrobił albo na qtcreatorze albo na
+netbeans nie wiem gdzie będzie łatwiej do linkować wszystkie
+biblioteki, pogoogluje.
+co do środowiska2 (platforma), ja bym był jednak za linuxem będzie
+lepiej:P a poza tym i qt i opencv w sumie wszedzie mozna przenieść:P
+
+testowanie: projektor jest zawsze w sumie nawet 2:P kamerka za chwile
+będzie. Mogę wziąć klucz w każdej chwili nie ma żadnego probelmu, na
+pomoc też oczywiście możemy liczyć:)

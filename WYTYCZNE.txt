@@ -1,0 +1,5 @@
+Œrodowisko:
+Linux, QtCreator
+
+Biblioteki:
+Qt, OpenCV, PCL
