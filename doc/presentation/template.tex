@@ -1,0 +1,232 @@
+\documentclass{beamer}
+\setbeamertemplate{navigation symbols}{}
+
+\usepackage[polish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{polski}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+
+\usetheme{Darmstadt}
+
+\beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
+\begin{document}
+\title{Interfejs kamery oraz projektora}  
+\author{Piotr Róż \\ Jacek Zawistowski}
+\institute
+{
+  Politechnika Warszawska\\
+  Wydział Elektroniki i Technik Informacyjnych\\
+  Instytut Systemów Elektronicznych
+  \and
+  Politechnika Warszawska\\
+  Wydział Elektroniki i Technik Informacyjnych\\
+  Intytut ?
+}
+\date{\today} 
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\section{Sekwencja nukleotydowa ogórka}
+\subsection{Proces sekwencjonowania}
+% http://www.twojeinnowacje.pl/polacy-zsekwencjonowali-genom-ogorka-i-dowiedli-jak-rosliny-reaguja-na-stres
+% http://www.polskieradio.pl/23/266/Artykul/432667,Polacy-zsekwencjonowali-genom-ogorka
+% http://www.sggw.pl/2011/08/30/genom-ogorka-opublikowany/
+\begin{frame}
+	\begin{columns}
+		\begin{column}{4cm}
+			\begin{figure}[htb]
+	  			\begin{center}
+	  				\includegraphics[angle=0,scale=0.4]{img/ogorek.jpg}
+	  			\end{center}
+	        \end{figure}
+    	\end{column}
+    	\begin{column}{8cm}
+  			\begin{itemize}
+    			\item Praca zespołu prof. Zbigniewa Przybeckiego
+    			\item Pierwszy tak skomplikowany genom zsekwencjonowany przez 'polski' zespół (20-osobowy)
+    			\item Porównanie z genomem zsekwencjonowanym przez naukowców z Chin
+    			\item Wyścig
+    			\item Wyniki badań:
+    			\begin{itemize}
+    				\item DNA obu roślin bardzo się różnią
+    				\item Wpływ klimatu
+    				\item Zdolność adaptacyjna roślin
+    				\item Ogromne ilości danych
+    				\item Konieczność przeprowadzenia łatwej wizualizacji genomu
+    			\end{itemize}
+  			\end{itemize}
+  		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\subsection{Baza zebranej wiedzy}
+\begin{frame}\frametitle{Dane zebrane w postaci tabeli...są trudne do przeglądania.}
+	\begin{figure}[htb]
+		\begin{center}
+	  		\includegraphics[angle=0,scale=0.3]{img/dane.jpg}
+		\end{center}
+	\end{figure}
+\end{frame}
+
+
+\section{Przeglądarka genomu}
+\subsection{Rozwiązanie}
+\begin{frame}
+	\begin{columns}
+		\begin{column}{6cm}
+			\begin{figure}[htb]
+	  			\begin{center}
+	  				\includegraphics[angle=0,scale=0.4]{img/sekwencja.jpg}
+	  			\end{center}
+	        \end{figure}
+    	\end{column}
+    	\begin{column}{6cm}
+			Z powodu istnienia ogromnej ilości generowanych danych, zaistniała konieczność wykorzystania:
+			\begin{itemize}
+				\item Praktycznie nieograniczonej mocy obliczeniowej komputerów
+				\item Statystyki
+				\item Bioinformatyki
+			\end{itemize}
+			w celu zoptymalizowania procesu ich przeglądania oraz przetwarzania.
+		\end{column}
+	\end{columns}
+\end{frame}
+
+
+\subsection{Rice Genome Browser}
+\begin{frame}\frametitle{Przeglądarka genomu ryżu}
+	\begin{figure}[htb]
+		\begin{center}
+	  		\includegraphics[angle=0,scale=0.6]{img/rice_logo.jpg}
+	  	\end{center}
+	\end{figure}
+	
+	\begin{figure}[htb]
+		\begin{center}
+	  		\includegraphics[angle=0,scale=0.6]{img/rice_chr.jpg}
+	  	\end{center}
+	\end{figure}
+	
+	\url{http://rice.plantbiology.msu.edu/cgi-bin/gbrowse/rice/}
+\end{frame}
+
+
+\begin{frame}\frametitle{Przeglądarka genomu ryżu}
+	\begin{figure}[htb]
+		\begin{center}
+	  		\includegraphics[angle=0,scale=0.32]{img/rice_main.jpg}
+	  	\end{center}
+	\end{figure}
+\end{frame}
+
+\subsection{GBrowse}
+\begin{frame}\frametitle{Algorytmy i struktury danych}
+	\textbf{GBrowse} jest graficznym interfejsem wyświetlającym informacje o genomie począwszy od pojedynczego nukleotydu, a skończywszy na strukturze całego chromosomu.
+
+	\begin{block}{Wyświetlane struktury}
+		\begin{itemize}
+			\item Scaffoldy
+			\item Contigi
+			\item Markery
+			\item ...
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\subsection{GBrowse}
+\begin{frame}\frametitle{Algorytmy i struktury danych}
+	\begin{block}{Interval Tree}
+		Drzewo przedziałowe:
+		\begin{itemize}
+			\item Każdy węzeł przetrzymuje informację o przedziale domkniętym
+			\item Wyszukiwanie przedziałów, mających z zadanym przedziałem niepuste części wspólne
+			\item Wydajność (wygenerowanie 5000 widoków - ramek):
+				\begin{itemize}
+					\item Standardowe podejście wykonujące odpowiednie operacje na bazie danych: \\1183.99100018s
+					\item Podejście opierające się o drzewo przedziałowe: \\187.058000088s
+				\end{itemize}
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Struktura aplikacji}
+	\begin{columns}
+		\begin{column}{6cm}
+			\begin{figure}[htb]
+				\begin{center}
+	  				\includegraphics[angle=0,scale=0.25]{img/architektura.pdf}
+	  			\end{center}
+			\end{figure}
+    	\end{column}
+    	\begin{column}{6cm}
+    		\begin{block}{Zalety}
+    			\begin{itemize}
+    				\item Multiplatformowość
+    				\item Multisystemowosć
+    				\item Bezpieczeństwo
+    				\item Brak obciążenia komputera klienta
+    			\end{itemize}
+    		\end{block}
+    		\begin{block}{Wady}
+    			\begin{itemize}
+    				\item Spadek wydajności przy dużym obciążeniu serwera
+    			\end{itemize}
+    		\end{block}
+		\end{column}
+	\end{columns}	
+\end{frame}
+
+
+\begin{frame}\frametitle{Prototyp aplikacji}
+	\begin{figure}[htb]
+		\begin{center}
+	  		\includegraphics[angle=0,scale=0.45]{img/chromosomy.jpg}
+	  	\end{center}
+	\end{figure}
+\end{frame}
+
+
+\begin{frame}\frametitle{Prototyp aplikacji}
+	\begin{figure}[htb]
+		\begin{center}
+	  		\includegraphics[angle=0,scale=0.35]{img/chromosom3.jpg}
+	  	\end{center}
+	\end{figure}
+\end{frame}
+
+
+\subsection{Podsumowanie}
+\begin{frame}\frametitle{Podsumowanie}
+	\begin{itemize}
+		\item Czasochłoonna obróbka danych
+		\item Konieczna maksymalna elastyczność aplikacji
+		\item Duże znaczenie przeglądarki
+	\end{itemize}
+	\begin{block}{Plany na przyszłość}
+		\begin{itemize}
+			\item Zgromadzenie wszystkich danych
+			\item Wyświetlenie wszystkich struktur
+			\item Implementacja algorytmu (?)
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+
+\begin{frame}\frametitle{Dziękuję}
+\begin{center}
+  \Huge{\textbf{Dziękuję za uwagę!}}
+\end{center}
+\end{frame}
+
+\end{document}
