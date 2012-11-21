@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.10pt}
+\select@language {polish}
+\beamer@sectionintoc {1}{Wst\IeC {\k e}p}{2}{0}{1}
+\beamer@sectionintoc {2}{Architektura}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{Architektura systemu}{7}{0}{2}
+\beamer@subsectionintoc {2}{2}{Architektura oprogramowania}{12}{0}{2}
+\beamer@sectionintoc {3}{Podsumowanie}{15}{0}{3}

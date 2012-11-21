@@ -16,12 +16,17 @@
 
 \beamersetuncovermixins{\opaqueness<1>{25}}{\opaqueness<2->{15}}
 \begin{document}
-\title{Interfejs graficzny do układu\\ pozyskiwania modelu 3D \\ Projekt z przedmiotu SWIZ}  
+\title{Interfejs kamery oraz projektora \\ Projekt z przedmiotu SWIZ}  
 \author{Piotr Róż \\ Jacek Zawistowski}
 \institute
 {
   Politechnika Warszawska\\
   Wydział Elektroniki i Technik Informacyjnych\\
+  Instytut Systemów Elektronicznych
+  \and
+  Politechnika Warszawska\\
+  Wydział Elektroniki i Technik Informacyjnych\\
+  Intytut ?
 }
 \date{\today} 
 
@@ -125,52 +130,18 @@
     
     \begin{column}{6cm}
      
-      \begin{figure}[htb]
-	\begin{center}
-	  \includegraphics[angle=0,scale=0.3]{opencv.png}
-	\end{center}
-      \end{figure}
-      
-      \begin{figure}[htb]
-	\begin{center}
-	  \includegraphics[angle=0,scale=0.05]{pcl.png}
-	\end{center}
-      \end{figure}
-      
-      \begin{figure}[htb]
-	\begin{center}
-	  \includegraphics[angle=0,scale=0.15]{qt.png}
-	\end{center}
-      \end{figure}
-      
-      \begin{figure}[htb]
-	\begin{center}
-	  \includegraphics[angle=0,scale=0.2]{opengl.jpg}
-	\end{center}
-      \end{figure}
-     
     \end{column}
 
+    
   \end{columns}
     
 \end{frame}
 
 \section{Podsumowanie}
 \begin{frame}\frametitle{Podsumowanie}
-
-  \begin{block}{Zalety}
-   \begin{itemize}
-    \item Wieloplatformowość aplikacji.
-    \item Przenośność bibliotek.
-    \item Możliwość wyboru między różnymi językami programowania: C++, Python...
-   \end{itemize}
-
-  \end{block}
-
-
   \begin{alertblock}{Możliwe problemy}
     \begin{itemize}
-     \item Synchronizacja obrazów z projektora i kamery.
+     \item Synchronizacja obrazów z projektora i kamery;
      \item ?
     \end{itemize}
   \end{alertblock}
