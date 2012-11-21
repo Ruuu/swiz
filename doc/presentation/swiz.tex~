@@ -42,7 +42,8 @@
 	  \item projektor;
 	  \item kamera. 
 	  \end{itemize}\pause
-	\item Pobranie sekwencji obrazów.
+	\item Oświetlenie analizowanego obiektu sekwencją obrazów.
+	\item Pobranie sekwencji obrazów z kamery.
 	\end{itemize}
       \end{block}
     \end{column}
@@ -170,7 +171,7 @@
 
   \begin{alertblock}{Możliwe problemy}
     \begin{itemize}
-     \item Synchronizacja obrazów z projektora i kamery;
+     \item Synchronizacja obrazów z projektora i kamery.
      \item ?
     \end{itemize}
   \end{alertblock}
