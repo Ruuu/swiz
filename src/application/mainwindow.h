@@ -3,6 +3,11 @@
 
 #include <QMainWindow>
 #include <QtWidgets>
+#include <QImage>
+#include <QLabel>
+
+#include <opencv/cv.h>
+#include <opencv/highgui.h>
 
 namespace Ui
 {
@@ -13,37 +18,40 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-    
-private slots:
-    void startShowing();
-    void about();
+    public:
+        explicit MainWindow(QWidget *parent = 0);
+        ~MainWindow();
 
-private:
-    Ui::MainWindow * ui;
+    private slots:
+        void startShowing();
+        void about();
 
-    void createActions();
-    void createMenus();
-    void createToolBars();
-    void createStatusBar();
-    void createLayout();
+    private:
+        Ui::MainWindow * ui;
 
-    void CONSOLE(QString text);
+        void createActions();
+        void createMenus();
+        void createToolBars();
+        void createStatusBar();
+        void createLayout();
 
-    QWidget * topWidget;
+        void CONSOLE(QString text);
 
-    QTextEdit * console;
+        QWidget * topWidget;
 
-    QMenu * fileMenu;
-    QMenu * helpMenu;
+        QTextEdit * console;
 
-    QAction * startShowingAct;
-    QAction * aboutAct;
+        QMenu * fileMenu;
+        QMenu * helpMenu;
 
-    QLineEdit * parameter_1;
-    QLineEdit * parameter_2;
+        QAction * startShowingAct;
+        QAction * aboutAct;
+
+        QLineEdit * parameter_1;
+        QLineEdit * parameter_2;
+
+        QLabel * left_image;
+        QLabel * right_image;
 };
 
 #endif // MAINWINDOW_H
