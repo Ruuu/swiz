@@ -52,7 +52,7 @@ private:
 	int shotCount;
 
 public:
-	StripePattern(PatternType type, PatternOrientation orientation, int width, int height, int stripeCount = 1, int shiftCount = 3);
+    StripePattern(PatternType type, PatternOrientation orientation, int width, int height, int stripeCount = 1, int shiftCount = 3);
 
 	~StripePattern();
 

@@ -53,7 +53,7 @@ private:
 	void demodulatePhase(bool smooth);
 
 public:
-	StripePatternAnalyzer(int stripeCount, int shiftCount, int patternWidth, int patternHeight, int projectionOffset, int intensityBufferSize = 5, IplImage* projectionMask = NULL);
+    StripePatternAnalyzer(int stripeCount, int shiftCount, int patternWidth, int patternHeight, int projectionOffset, int intensityBufferSize = 5, IplImage* projectionMask = NULL);
 
 	~StripePatternAnalyzer();
 

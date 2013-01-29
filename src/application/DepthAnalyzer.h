@@ -22,7 +22,7 @@ private:
 	bool calibrated;
 
 public:
-	DepthAnalyzer(int stripeCount, int shiftCount, int patternWidth, int patternHeight, int projectionOffset, int intensityBufferSize);
+    DepthAnalyzer(int stripeCount, int shiftCount, int patternWidth, int patternHeight, int projectionOffset, int intensityBufferSize);
 
 	~DepthAnalyzer();
 

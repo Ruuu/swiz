@@ -30,6 +30,7 @@ class MainWindow : public QMainWindow
     public:
         explicit MainWindow(QWidget *parent = 0);
         ~MainWindow();
+        void showSecondary(IplImage * image);
 
     private slots:
         void startCalibrating();
@@ -69,7 +70,7 @@ class MainWindow : public QMainWindow
         QLabel * left_image;
         QLabel * right_image;
 
-        QWidget * secondary;
+        QLabel * secondary;
 
         DepthAnalyzer * analyzer;
         IplImage * foregroundTextureImage;

@@ -26,27 +26,6 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     else
     {
-        // Przynajmniej dwa monitory
-        QRect screenres = desktop->screenGeometry(1);
-
-        this->secondary = new QWidget();
-        this->secondary->setWindowTitle("Drugie okno");
-
-        QVBoxLayout* layout = new QVBoxLayout(this->secondary);
-        QLabel* label = new QLabel("QLabel With Red Text");
-        //Set Label Alignment
-        label->setAlignment(Qt::AlignCenter);
-
-        QPalette* palette = new QPalette();
-        palette->setColor(QPalette::WindowText,Qt::red);
-        label->setPalette(*palette);
-
-        layout->addWidget(label);
-
-        this->secondary->move(QPoint(screenres.x(), screenres.y()));
-        this->secondary->show();
-        this->secondary->setWindowState(Qt::WindowFullScreen);
-
         CONSOLE(tr("Program został uruchomiony poprawnie."));
     }
 
@@ -55,6 +34,31 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showSecondary(IplImage * image)
+{
+    QDesktopWidget * desktop = QApplication::desktop();
+    // Przynajmniej dwa monitory
+    QRect screenres = desktop->screenGeometry(1);
+
+    this->secondary = new QLabel();
+    this->secondary->setWindowTitle("Drugie okno");
+
+    CONSOLE(tr("Dokonuje konwersji z IplImage na QImage\n"));
+
+    QImage qimg = ImageConversion::IplImage2QImage(image);
+
+    CONSOLE(tr("Konwersja z IplImage na QImage przeprowadzona poprawnie!\n"));
+    CONSOLE(tr("Wyswietlam wczytany i przekonwertowany obraz\n"));
+
+    this->secondary->setPixmap(QPixmap::fromImage(qimg));
+
+    CONSOLE(tr("Obraz zostal wyswietlony poprawnie!\n"));
+
+    this->secondary->move(QPoint(screenres.x(), screenres.y()));
+    this->secondary->show();
+    this->secondary->setWindowState(Qt::WindowFullScreen);
 }
 
 void MainWindow::createActions()

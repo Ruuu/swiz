@@ -2,7 +2,7 @@
 
 DepthAnalyzer::DepthAnalyzer(int stripeCount, int shiftCount, int patternWidth, int patternHeight, int projectionOffset, int intensityBufferSize)
 {
-	patternAnalyzer = new StripePatternAnalyzer(stripeCount, shiftCount, patternWidth, patternHeight, projectionOffset, intensityBufferSize);
+    patternAnalyzer = new StripePatternAnalyzer(stripeCount, shiftCount, patternWidth, patternHeight, projectionOffset, intensityBufferSize);
 	phase0 = NULL;
 	phase0Norm = NULL;
 	depthBuffer = NULL;

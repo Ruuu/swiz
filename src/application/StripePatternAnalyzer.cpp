@@ -26,7 +26,7 @@ StripePatternAnalyzer::StripePatternAnalyzer(int stripeCount, int shiftCount, in
 	phaseMap = NULL;
 
 
-	pattern = new StripePattern(HYBRID, VERTICAL, patternWidth, patternHeight, stripeCount, shiftCount);
+    pattern = new StripePattern(HYBRID, VERTICAL, patternWidth, patternHeight, stripeCount, shiftCount);
 
 	capture = createCamCapture();
 	if(!capture)
