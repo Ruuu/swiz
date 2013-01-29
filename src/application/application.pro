@@ -12,11 +12,11 @@ TARGET = application
 TEMPLATE = app
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
-    imageconversion.cpp
+        mainwindow.cpp
 
 HEADERS  += mainwindow.h \
-    imageconversion.h
+    imageconversion.h \
+    utils.h
 
 FORMS    += mainwindow.ui
 

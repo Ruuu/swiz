@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "imageconversion.h"
+#include "utils.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,7 +15,38 @@ MainWindow::MainWindow(QWidget *parent) :
     this->createStatusBar();
     this->createLayout();
 
-    CONSOLE(tr("Program został uruchomiony poprawnie."));
+    QDesktopWidget * desktop = QApplication::desktop();
+    if (1 == desktop->screenCount())
+    {
+        // Jeden monitor
+        QMessageBox::warning(this, tr("Blad!"), tr("Aplikacja wymaga do działania 2 monitorów!"));
+        CONSOLE(tr("Aplikacja wymaga do działania 2 monitorów! Program może działać nieprawidłowo..."));
+    }
+    else
+    {
+        // Przynajmniej dwa monitory
+        QRect screenres = desktop->screenGeometry(1);
+
+        this->secondary = new QWidget();
+        this->secondary->setWindowTitle("Drugie okno");
+
+        QVBoxLayout* layout = new QVBoxLayout(this->secondary);
+        QLabel* label = new QLabel("QLabel With Red Text");
+        //Set Label Alignment
+        label->setAlignment(Qt::AlignCenter);
+
+        QPalette* palette = new QPalette();
+        palette->setColor(QPalette::WindowText,Qt::red);
+        label->setPalette(*palette);
+
+        layout->addWidget(label);
+
+        this->secondary->move(QPoint(screenres.x(), screenres.y()));
+        this->secondary->show();
+        this->secondary->setWindowState(Qt::WindowFullScreen);
+
+        CONSOLE(tr("Program został uruchomiony poprawnie."));
+    }
 }
 
 MainWindow::~MainWindow()
@@ -68,13 +100,13 @@ void MainWindow::createLayout()
     QVBoxLayout * mainLayout = new QVBoxLayout;
 
     topWidget = new QWidget();
-    QHBoxLayout * topLayout = new QHBoxLayout;
-    topLayout->addWidget(new QLabel(tr("Obraz wyświetlany przez projektor:")));
+    QGridLayout * topLayout = new QGridLayout;
+    topLayout->addWidget(new QLabel(tr("Obraz wyświetlany przez projektor:")), 0, 0);
     left_image = new QLabel();
-    topLayout->addWidget(left_image);
-    topLayout->addWidget(new QLabel(tr("Obraz pobrany z kamery:")));
+    topLayout->addWidget(left_image, 1, 0);
+    topLayout->addWidget(new QLabel(tr("Obraz pobrany z kamery:")), 0, 1);
     right_image = new QLabel();
-    topLayout->addWidget(right_image);
+    topLayout->addWidget(right_image, 1, 1);
     topWidget->setLayout(topLayout);
 
     console = new QTextEdit();
@@ -154,6 +186,26 @@ void MainWindow::startShowing()
     data      = (uchar *)img_conv->imageData;
 
     CONSOLE(tr("Pracuje nad przekonwertowanym obrazem o rozmiarze ") + QString::number(height) + tr("x") + QString::number(width) + tr(" z ") + QString::number(channels) + tr(" kanalami\n"));
+
+    CONSOLE(tr("\nPobieram obraz z kamery."));
+
+    CvCapture * capture = Utils::cameraCapture();
+    if(!capture)
+    {
+        CONSOLE(tr("Błąd podczas odczytywania obrazu z kamery!"));
+        return ;
+    }
+
+    CONSOLE(tr("Zamieniam CvCapture na obrazek IplImage."));
+    IplImage * frame = cvQueryFrame(capture);
+    IplImage * image = cvCreateImage(cvSize(frame->width, frame->height), frame->depth, frame->nChannels);
+
+    CONSOLE(tr("Konwertuje obraz IplImage na QImage."));
+    QImage camera_img = ImageConversion::IplImage2QImage(image);
+    right_image->setPixmap(QPixmap::fromImage(camera_img));
+    right_image->show();
+
+    CONSOLE(tr("Zakonczylem pobieranie obrazu z kamery."));
 }
 
 void MainWindow::about()

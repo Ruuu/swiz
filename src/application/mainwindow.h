@@ -5,6 +5,7 @@
 #include <QtWidgets>
 #include <QImage>
 #include <QLabel>
+#include <QWidget>
 
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
@@ -52,6 +53,8 @@ class MainWindow : public QMainWindow
 
         QLabel * left_image;
         QLabel * right_image;
+
+        QWidget * secondary;
 };
 
 #endif // MAINWINDOW_H

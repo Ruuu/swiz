@@ -9,7 +9,7 @@
 class ImageConversion
 {
     public:
-        ImageConversion();
+        ImageConversion() {}
 
         static IplImage * qImage2IplImage(const QImage& qImage)
         {
