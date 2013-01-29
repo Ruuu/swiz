@@ -8,15 +8,6 @@ class Utils
     public:
        Utils() {}
 
-       static CvCapture * videoCapture()
-       {
-           cv::Mat imgCam1;
-           cv::VideoCapture cap1(0); //albo -1 albo 1 jako argument
-           cap1 >> imgCam1;
-
-           return
-       }
-
        static CvCapture * cameraCapture()
        {
            //CvCapture * capture = cvCaptureFromCAM(CV_CAP_ANY);

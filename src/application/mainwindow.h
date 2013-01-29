@@ -10,6 +10,14 @@
 #include <opencv/cv.h>
 #include <opencv/highgui.h>
 
+#include "imageconversion.h"
+#include "utils.h"
+
+#include "StripePattern.h"
+#include "StripePatternAnalyzer.h"
+#include "DepthAnalyzer.h"
+#include "3DScannerUtil.h"
+
 namespace Ui
 {
     class MainWindow;
@@ -25,6 +33,7 @@ class MainWindow : public QMainWindow
 
     private slots:
         void startShowing();
+        void startShowingOld();
         void about();
 
     private:
@@ -35,6 +44,10 @@ class MainWindow : public QMainWindow
         void createToolBars();
         void createStatusBar();
         void createLayout();
+
+        int getInt(QString title, QString label, int value, int min, int max, int step);
+        double getDouble(QString title, QString label, double value, double min, double max, double decimal);
+        QString getText(QString title, QString label);
 
         void CONSOLE(QString text);
 
@@ -55,6 +68,8 @@ class MainWindow : public QMainWindow
         QLabel * right_image;
 
         QWidget * secondary;
+
+        DepthAnalyzer * analyzer;
 };
 
 #endif // MAINWINDOW_H

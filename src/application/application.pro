@@ -12,11 +12,19 @@ TARGET = application
 TEMPLATE = app
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    3DScannerUtil.cpp \
+    StripePatternAnalyzer.cpp \
+    StripePattern.cpp \
+    DepthAnalyzer.cpp
 
 HEADERS  += mainwindow.h \
     imageconversion.h \
-    utils.h
+    utils.h \
+    3DScannerUtil.h \
+    StripePatternAnalyzer.h \
+    StripePattern.h \
+    DepthAnalyzer.h
 
 FORMS    += mainwindow.ui
 
