@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     smooth = false;
     accurate = true;
+    foregroundTextureImage = NULL;
 
     this->createActions();
     this->createMenus();
@@ -192,7 +193,7 @@ void MainWindow::startShowing()
     CONSOLE(tr("Odległość kamery od projektora: ") + QString("%1").arg(spacing));
 
     if(foregroundTextureImage != NULL)
-        cvReleaseData(foregroundTextureImage);
+        cvReleaseImage(foregroundTextureImage);
     foregroundTextureImage = cvCreateImage(cvSize(analyzer->getForeground()->width, analyzer->getForeground()->height), analyzer->getForeground()->depth, analyzer->getForeground()->nChannels);
 
     CONSOLE(tr("KALIBRACJA ROZPOCZĘTA"));
