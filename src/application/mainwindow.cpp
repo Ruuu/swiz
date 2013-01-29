@@ -59,8 +59,11 @@ MainWindow::~MainWindow()
 
 void MainWindow::createActions()
 {
-    startShowingAct = new QAction(tr("&Uruchom"), this);
-    connect(startShowingAct, SIGNAL(triggered()), this, SLOT(startShowing()));
+    startCalibratingAction = new QAction(tr("&Kalibracja"), this);
+    connect(startCalibratingAction, SIGNAL(triggered()), this, SLOT(startCalibrating()));
+
+    startScanningAction = new QAction(tr("&Skanowanie"), this);
+    connect(startScanningAction, SIGNAL(triggered()), this, SLOT(startScanning()));
 
     aboutAct = new QAction(tr("&O programie"), this);
     connect(aboutAct, SIGNAL(triggered()), this, SLOT(about()));
@@ -69,7 +72,8 @@ void MainWindow::createActions()
 void MainWindow::createMenus()
 {
     fileMenu = menuBar()->addMenu(tr("&Plik"));
-    fileMenu->addAction(startShowingAct);
+    fileMenu->addAction(startCalibratingAction);
+    fileMenu->addAction(startScanningAction);
 
     helpMenu = menuBar()->addMenu(tr("P&omoc"));
     helpMenu->addAction(aboutAct);
@@ -90,7 +94,8 @@ void MainWindow::createToolBars()
 
     ui->mainToolBar->addSeparator();
 
-    ui->mainToolBar->addAction(startShowingAct);
+    ui->mainToolBar->addAction(startCalibratingAction);
+    ui->mainToolBar->addAction(startScanningAction);
 }
 
 void MainWindow::createStatusBar()
@@ -160,7 +165,7 @@ QString MainWindow::getText(QString title, QString label)
     return text_value;
 }
 
-void MainWindow::startShowing()
+void MainWindow::startCalibrating()
 {
     CONSOLE(tr("Przeprowadzam kalibracje..."));
 
@@ -201,6 +206,12 @@ void MainWindow::startShowing()
     //analyzer->showAll();
     CONSOLE(tr("KALIBRACJA ZAKOŃCZONA"));
 
+}
+
+void MainWindow::startScanning()
+{
+    analyzer->analyze();
+    analyzer->showAll();
 }
 
 void MainWindow::startShowingOld()

@@ -32,7 +32,8 @@ class MainWindow : public QMainWindow
         ~MainWindow();
 
     private slots:
-        void startShowing();
+        void startCalibrating();
+        void startScanning();
         void startShowingOld();
         void about();
 
@@ -58,7 +59,8 @@ class MainWindow : public QMainWindow
         QMenu * fileMenu;
         QMenu * helpMenu;
 
-        QAction * startShowingAct;
+        QAction * startCalibratingAction;
+        QAction * startScanningAction;
         QAction * aboutAct;
 
         QLineEdit * parameter_1;
