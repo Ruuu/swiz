@@ -7,6 +7,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    smooth = false;
+    accurate = true;
+
     this->createActions();
     this->createMenus();
     this->createToolBars();
@@ -188,7 +191,14 @@ void MainWindow::startShowing()
     double spacing = getDouble(tr("Odległość kamery od projektora"), tr("Podaj odległość kamery od projektora w centymetrach:"), 1024.0, 1.0, 2000.0, 1.0);
     CONSOLE(tr("Odległość kamery od projektora: ") + QString("%1").arg(spacing));
 
+    if(foregroundTextureImage != NULL)
+        cvReleaseData(foregroundTextureImage);
+    foregroundTextureImage = cvCreateImage(cvSize(analyzer->getForeground()->width, analyzer->getForeground()->height), analyzer->getForeground()->depth, analyzer->getForeground()->nChannels);
 
+    CONSOLE(tr("KALIBRACJA ROZPOCZĘTA"));
+    analyzer->calibrate(max_depth, spacing, smooth, accurate);
+    //analyzer->showAll();
+    CONSOLE(tr("KALIBRACJA ZAKOŃCZONA"));
 
 }
 

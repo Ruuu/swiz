@@ -70,6 +70,10 @@ class MainWindow : public QMainWindow
         QWidget * secondary;
 
         DepthAnalyzer * analyzer;
+        IplImage * foregroundTextureImage;
+
+        bool smooth;
+        bool accurate;
 };
 
 #endif // MAINWINDOW_H
