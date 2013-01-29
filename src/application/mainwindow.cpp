@@ -193,7 +193,7 @@ void MainWindow::startShowing()
     CONSOLE(tr("Odległość kamery od projektora: ") + QString("%1").arg(spacing));
 
     if(foregroundTextureImage != NULL)
-        cvReleaseImage(foregroundTextureImage);
+        cvReleaseImage(&foregroundTextureImage);
     foregroundTextureImage = cvCreateImage(cvSize(analyzer->getForeground()->width, analyzer->getForeground()->height), analyzer->getForeground()->depth, analyzer->getForeground()->nChannels);
 
     CONSOLE(tr("KALIBRACJA ROZPOCZĘTA"));
